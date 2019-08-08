@@ -7,6 +7,15 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
+import VueRouter from 'vue-router';
+import axios from 'axios';
+import Buefy from 'buefy'
+import 'buefy/dist/buefy.css';
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faEdit } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
+import routes from './routes.js';
 
 /**
  * The following block of code may be used to automatically register your
@@ -19,7 +28,10 @@ window.Vue = require('vue');
 // const files = require.context('./', true, /\.vue$/i);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+library.add(faEdit);
+Vue.component('font-awesome-icon', FontAwesomeIcon)
+Vue.component('main-component', require('./components/MainComponent.vue').default);
+Vue.component('categories-component', require('./components/CategoriesComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -27,6 +39,11 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+Vue.prototype.$axios = axios;
+Vue.use(VueRouter);
+Vue.use(Buefy);
+
 const app = new Vue({
     el: '#app',
+    router: new VueRouter({routes, mode: 'history'})
 });
