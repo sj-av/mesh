@@ -12,6 +12,8 @@ $factory->define(Product::class, function (Faker $faker) {
             $category = App\Category::inRandomOrder()->first();
             if ($category) return $category->id;
             return factory(App\Category::class)->create()->id;
-        }
+        },
+        'description' => $faker->sentence,
+        'image_url' => $faker->imageUrl(300, 200)
     ];
 });
