@@ -14,6 +14,6 @@ $factory->define(Product::class, function (Faker $faker) {
             return factory(App\Category::class)->create()->id;
         },
         'description' => $faker->sentence,
-        'image_url' => $faker->imageUrl(300, 200)
+        'image_url' => $faker->imageUrl(200, 200)
     ];
 });

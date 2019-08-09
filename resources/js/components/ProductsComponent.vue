@@ -8,11 +8,13 @@
       <div class="row">
         <div class="card mb-3 ml-3" v-for="product in products" :key="product.id">
           <div class="card-body d-flex justify-content-center">
-            <img :src="product.image_url" :alt="product.name" />
+            <div v-lazy-container="{ selector: 'img' }">
+              <img :data-src="product.image_url" data-loading="/images/loader.gif" />
+            </div>
           </div>
           <div class="card-footer d-flex justify-content-between">
             {{product.name}}
-            <router-link :to="`/product/${product.id}`">
+            <router-link :to="`/product/${product.id}`" title="View product">
               <font-awesome-icon icon="edit" />
             </router-link>
           </div>

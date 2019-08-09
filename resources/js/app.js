@@ -14,6 +14,7 @@ import 'buefy/dist/buefy.css';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faEdit } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import VueLazyload from 'vue-lazyload'
 
 import routes from './routes.js';
 
@@ -42,8 +43,9 @@ Vue.component('categories-component', require('./components/CategoriesComponent.
 Vue.prototype.$axios = axios;
 Vue.use(VueRouter);
 Vue.use(Buefy);
+Vue.use(VueLazyload)
 
 const app = new Vue({
     el: '#app',
-    router: new VueRouter({routes, mode: 'history'})
+    router: new VueRouter({ routes, mode: 'history' })
 });

@@ -1,10 +1,10 @@
 <template>
   <div v-if="product_loaded">
     <h3>Product view: {{product.name}}</h3>
-    <div class="form-group">
-      <img :src="product.image_url" :alt="product.name" class="product-image" />
+    <div v-lazy-container="{ selector: 'img' }" class="card image-container">
+      <img :data-src="product.image_url" data-loading="/images/loader.gif" />
     </div>
-    <div class="form-group">
+    <div class="form-group mt-5">
       <label for="product-category">Category</label>
       <select v-model="product.category_id" id="product-category" class="form-control">
         <option
@@ -48,6 +48,7 @@ export default {
   },
   data() {
     return {
+      loaded: false,
       product: null,
       product_loaded: false,
       categories: []
@@ -97,10 +98,19 @@ export default {
   }
 };
 </script>
-<style>
+<style scoped>
 .product-image {
   min-width: 320px;
   min-height: 240px;
+}
+
+.card.image-container {
+  padding: 10px;
+  display: inline-block;
+}
+img {
+  width: 200px;
+  height: 200px;
 }
 </style>
 
