@@ -10,3 +10,6 @@ npm run production
 
 php artisan serve
 ```
+
+
+Вместо **vue-resource** использовался **axios**
